@@ -1,4 +1,5 @@
-# API
+# Sirius Student Management API
+## 시리우스의 종합 학생 관리 시스템
 ## 시간표 API
 ```json
 
