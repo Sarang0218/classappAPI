@@ -1,0 +1,2 @@
+2d4128bc16f24606b365a2a664d4620d
+https://open.neis.go.kr/hub/misTimetable?KEY=fc1214b4b3844ebe865233e7cf37f20d&Type=json&pIndex=1&pSize=10&ATPT_OFCDC_SC_CODE=T10&SD_SCHUL_CODE=9296071
