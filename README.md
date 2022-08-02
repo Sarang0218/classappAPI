@@ -1,5 +1,11 @@
 # Sirius Student Management API
 ## 시리우스의 종합 학생 관리 시스템
+### 개발 현황:
+- [X] 시간표 API
+- [ ] 급식 API
+- [x] Todo API
+- [ ] Chat API
+- [ ] 회원 Customization API
 # 시간표 API
 ### 시간표 불러오기 <br>
 TYPE: **GET REQUEST**
@@ -80,7 +86,7 @@ TYPE: **GET REQUEST**
 ```
 URL/api/todoList/delete/todoPk/<br>
 
-# Chat API
+# Chat API (Not Implemented)
 ## 메세지 보내기
 TYPE: **GET REQUEST**
 ```json
