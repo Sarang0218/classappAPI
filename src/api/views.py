@@ -67,11 +67,12 @@ def signUpUser(request, username,password, stclasstype, edumintype,  grade):
   
   
   
-def todoCreate(request, pk, title, body):
+def todoCreate(request, pk, title, body, subject):
   try:
     stu = Student.objects.get(pk=pk)
-    Todo.objects.create(student=stu, todoTitle=title, todoBody=body)
-    data = {"result":"success"}
+    td = Todo.objects.create(student=stu, todoTitle=title, todoBody=body, subject=subject)
+    data = {"result":"success","todopk":td.pk}
+    td.save()
     ds = json.dumps(data, ensure_ascii=False)
     return HttpResponse(
       ds,
@@ -94,7 +95,7 @@ def todoGet(request, pk):
     alld = []
     for item in todos:
       i+=1
-      send_data = {"title":item.todoTitle, "body":item.todoBody}
+      send_data = {"title":item.todoTitle, "body":item.todoBody, "subject":item.subject, "todopk":item.pk}
       
       alld.append(send_data)
       print(alld)
@@ -111,6 +112,25 @@ def todoGet(request, pk):
   except:
     #zz
     pass
+
+def todoDel(request, todoPk):
+  try:
+    todo = Todo.objects.get(pk=todoPk)
+    todo.delete()
+    data = {"result":"success"}
+    ds = json.dumps(data, ensure_ascii=False)
+    return HttpResponse(
+      ds,
+      content_type=u"application/json; charset=utf-8",
+      status=200)
+  except:
+    data = {"result":"fail", "reason":"Failed during query."}
+    ds = json.dumps(data, ensure_ascii=False)
+    return HttpResponse(
+      ds,
+      content_type=u"application/json; charset=utf-8",
+      status=500)
+  
     
 
     

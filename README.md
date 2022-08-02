@@ -50,6 +50,7 @@ TYPE: **GET REQUEST**
 ```json
 {
   "result":"success",
+  "todopk":2
 }
 ```
 URL/api/todoList/create/StudentPk/title/body/<br>
@@ -61,17 +62,21 @@ TYPE: **GET REQUEST**
 {
    "todo":[
       {
-         "title":"수학의 정석 수(하) 풀기",
-         "body":"p27~p33"
+        "title":"수학의 정석 수(하) 풀기",
+        "body":"p27~p33",
+        "subject":"수학",
+        "todopk":2
       }
    ]
 }
 ```
 
-URL/api/todoList/view/StudentPk/<br>
-
-
-URL/api/todoList/delete/StudentPk//<br>
+### Todo 삭제
+TYPE: **GET REQUEST**
 ```json
-
+{
+  "result":"success",
+}
 ```
+URL/api/todoList/delete/todoPk/<br>
+
