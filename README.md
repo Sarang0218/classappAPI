@@ -114,7 +114,7 @@ URL/api/chat/send/messageTxt/studentPk/GroupchatPk<br>
   ```
 URL/api/chat/get/GroupchatPk
 
-#  급식 API
+#  급식 API (Not Implemented)
 ### 시간표 불러오기 <br>
 TYPE: **GET REQUEST**
 ```json
