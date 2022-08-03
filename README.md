@@ -2,7 +2,7 @@
 ## 시리우스의 종합 학생 관리 시스템
 ### 개발 현황:
 - [X] 시간표 API
-- [ ] 급식 API
+- [X] 급식 API
 - [x] Todo API
 - [ ] Chat API
 - [ ] 회원 Customization API
@@ -114,15 +114,25 @@ URL/api/chat/send/messageTxt/studentPk/GroupchatPk<br>
   ```
 URL/api/chat/get/GroupchatPk
 
-#  급식 API (Not Implemented)
+#  급식 API
 ### 시간표 불러오기 <br>
 TYPE: **GET REQUEST**
 ```json
-{ "food" : 
-  [
-    {
-        "data" : "참치마요구운주먹밥  <br/>물냉면.  (1.3.5.6.13.16.)<br/>바싹불고기  (2.5.6.10.13.)<br/>찐만두  (1.5.6.10.13.16.18.)<br/>포기김치.  <br/>트로피칼에이드  (13.)"
+{
+    "food":{
+        "menu":[
+            "후리카케밥  (2.5.6.10.13.)",
+            "미트스파게티.  (1.2.5.6.10.12.13.16.18.)",
+            "포기김치.  (9.13.)",
+            "음료  (5.13.)",
+            "불고기치아바타샌드위치  (1.2.5.6.12.13.16.)",
+            "모듬피클.  (13.)",
+            "열대과일샐러드  (1.5.13.)"
+        ]
     }
-  ]
 }
 ```
+URL/api/food/시도교육청코드/표준학교코드/시간표일자(YYYYMMDD)/<br>
+[예시](https://classappapi.compilingcoder.repl.co/api/food/B10/7021137/20220610/)
+
+

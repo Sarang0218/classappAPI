@@ -31,7 +31,29 @@ def getData(request, sido, sc, year, ymd, sem, rn, grade):
     content_type=u"application/json; charset=utf-8",
     status=200)
 
+def getDatalunc(request, sido, sc, ymd):
+  print(os.getenv("KEY"))
+  
+  print(f"https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=fc1214b4b3844ebe865233e7cf37f20d&Type=json&pIndex=1&pSize=10&ATPT_OFCDC_SC_CODE={sido}&SD_SCHUL_CODE={sc}&MLSV_YMD={ymd}")
+  datac = requests.get(f"https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=fc1214b4b3844ebe865233e7cf37f20d&Type=json&pIndex=1&pSize=10&ATPT_OFCDC_SC_CODE={sido}&SD_SCHUL_CODE={sc}&MLSV_YMD={ymd}").json() 
+  
+  
 
+  i = 0
+  alld = []
+  for item in datac["mealServiceDietInfo"][1]["row"]:
+    print(item)
+    send_data = {"menu":item["DDISH_NM"].split("<br/>")}
+    
+    alld = send_data
+    
+
+  data = {"food":alld}
+  ds = json.dumps(data, ensure_ascii=False)
+  return HttpResponse(
+    ds,
+    content_type=u"application/json; charset=utf-8",
+    status=200)
 def signUpUser(request, username,password, stclasstype, edumintype,  grade):
     #User 모델에 객체 생성
     # stu에 대입

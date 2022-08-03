@@ -19,7 +19,7 @@ from api.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/timesc/<str:sido>/<str:sc>/<int:year>/<str:ymd>/<str:sem>/<str:rn>/<int:grade>', getData),
-  path('api/signup/<str:username>/<str:password>/<str:stclasstype>/<str:edumintype>/<int:grade>', signUpUser),
+ path('api/food/<str:sido>/<str:sc>/<str:ymd>/', getDatalunc), path('api/signup/<str:username>/<str:password>/<str:stclasstype>/<str:edumintype>/<int:grade>', signUpUser),
   path('api/todoList/view/<int:pk>/',todoGet),
   path('api/todoList/create/<int:pk>/<str:title>/<str:body>',todoCreate),
   
