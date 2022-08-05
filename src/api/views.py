@@ -3,7 +3,7 @@ from django.http import JsonResponse, HttpResponse
 import os
 import json
 import requests
-from .models import Student, Todo
+from .models import Student, Todo, GroupChat, Message
 from django.contrib.auth.models import User
 # Create your views here.
 from django.db import IntegrityError
@@ -82,13 +82,6 @@ def signUpUser(request, username,password, stclasstype, edumintype,  grade):
     content_type=u"application/json; charset=utf-8",
     status=200)
   
-
-  
-
-  
-  
-  
-  
 def todoCreate(request, pk, title, body, subject):
   try:
     stu = Student.objects.get(pk=pk)
@@ -152,6 +145,10 @@ def todoDel(request, todoPk):
       ds,
       content_type=u"application/json; charset=utf-8",
       status=500)
+
+
+
+  
   
     
 

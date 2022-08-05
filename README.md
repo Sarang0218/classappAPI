@@ -32,7 +32,7 @@ URL/api/timesc/시도교육청코드/표준학교코드/학년도/시간표일�
 
 # User API
 ### 유저 생성 <br>
-TYPE: **GET REQUEST**
+TYPE: **POST REQUEST**
 
 ```json
 {
@@ -47,7 +47,11 @@ TYPE: **GET REQUEST**
   "reason":"Already Existing ID"
 }
 ```
-URL/api/signup/username/password/stclasstype/edumintype/grade
+전달값<br>
+"username"
+"password"
+
+URL/api/signup/stclasstype/edumintype/grade
 
 # To do list API
 
