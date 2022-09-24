@@ -27,7 +27,7 @@ TYPE: **GET REQUEST**
 
 ```
 
-URL/api/timesc/시도교육청코드/표준학교코드/학년도/시간표일자(YYYYMMDD)/학기/학년/반번호<br>
+URL/api/timesc/studentPk/년도(YYYY)/시간표일자(YYYYMMDD)/학기/학년/반번호<br>
 [예시](https://classappAPI.compilingcoder.repl.co/api/timesc/B10/7021137/2022/20220610/1/1/8)
 
 # User API
@@ -52,7 +52,20 @@ TYPE: **POST REQUEST**
 "password"
 
 URL/api/signup/stclasstype/edumintype/grade
+### 로그인 (로그체크) <br>
 
+```json
+{
+  "result":"success",
+}
+```
+
+전달값<br>
+"username"
+"password"
+
+
+URL/api/logcheck
 # To do list API
 
 ### Todo 생성

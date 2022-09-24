@@ -9,10 +9,10 @@ class Student(models.Model):
   )
   school = models.CharField(max_length=30, null=True)
   grade = models.IntegerField()
-  stclasstype = models.CharField(max_length=30, null=True)
+  stclasstype = models.IntegerField(null=True)
   edumintype = models.CharField(max_length=30, null=True)
-  
-  
+
+
   def __str__(self):
     return self.student.username
 

@@ -18,10 +18,12 @@ from django.urls import path
 from api.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/timesc/<str:sido>/<str:sc>/<int:year>/<str:ymd>/<str:sem>/<str:rn>/<int:grade>', getData),
- path('api/food/<str:sido>/<str:sc>/<str:ymd>/', getDatalunc), path('api/signup/<str:username>/<str:password>/<str:stclasstype>/<str:edumintype>/<int:grade>', signUpUser),
-  path('api/todoList/view/<int:pk>/',todoGet),
-  path('api/todoList/create/<int:pk>/<str:title>/<str:body>',todoCreate),
+    path('api/timesc/<int:year>/<str:ymd>/<str:sem>/', getData),
+    path('api/food/<str:sc>/<str:ymd>/', getDatalunc), 
+    path('api/signup/<str:stclasstype>/<str:edumintype>/<int:grade>', signUpUser),
+    path('api/logcheck/', logcheck),
+    path('api/todoList/view/<int:pk>/',todoGet),
+    path('api/todoList/create/<int:pk>/<str:title>/<str:body>/<str:subject>',todoCreate),
   
   
 ]
