@@ -56,7 +56,7 @@ TYPE: **POST REQUEST**
 "username"
 "password"
 
-URL/signup/stclasstype/edumintype/grade
+URL/signup/stclasstype/school/edumintype/grade
 
 ### 로그인 (로그체크) <br>
 

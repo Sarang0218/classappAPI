@@ -23,31 +23,38 @@ def rDatStat(res, reason):
 #급식#
 #시간표/급식#
 def getData(request, pk, ymd):
-  print(os.getenv("KEY"))
-  s = Student.objects.get(pk=pk)
-  print(f"https://open.neis.go.kr/hub/misTimetable?KEY=2d4128bc16f24606b365a2a664d4620d&Type=json&pIndex=1&ATPT_OFCDC_SC_CODE={s.edumintype}&SD_SCHUL_CODE={s.school}&ALL_TI_YMD={ymd}&GRADE={s.grade}&CLASS_NM={s.stclasstype}")
-  #https://open.neis.go.kr/hub/misTimetable?KEY=2d4128bc16f24606b365a2a664d4620d&Type=json&pIndex=1&ATPT_OFCDC_SC_CODE=B10&SD_SCHUL_CODE=7021137&AY=2022&ALL_TI_YMD=20220610&GRADE=1&SEM=1&CLASS_NM=1
-  datac = requests.get(f"https://open.neis.go.kr/hub/misTimetable?KEY=2d4128bc16f24606b365a2a664d4620d&Type=json&pIndex=1&ATPT_OFCDC_SC_CODE={s.edumintype}&SD_SCHUL_CODE={s.school}&ALL_TI_YMD={ymd}&GRADE={s.grade}&CLASS_NM={s.stclasstype}").json() 
-
-  
-  i = 0
-  alld = []
-  for item in datac["misTimetable"][1]["row"]:
-    i+=1
-    send_data = {"title":item["ITRT_CNTNT"][1:], "period":i}
+  try:
+    print(os.getenv("KEY"))
+    try: 
+      s = Student.objects.get(pk=pk);
+    except Exception as e: 
+      return rDatStat("강지오 바보 ERROR", str(e))
     
-    alld.append(send_data)
-    print(alld)
-
-  data = {"timesc":alld}
-  ds = json.dumps(data, ensure_ascii=False)
-  return HttpResponse(
-    ds,
-    content_type=u"application/json; charset=utf-8",
-    status=200)
+    #https://open.neis.go.kr/hub/misTimetable?KEY=2d4128bc16f24606b365a2a664d4620d&Type=json&pIndex=1&ATPT_OFCDC_SC_CODE=B10&SD_SCHUL_CODE=7021137&AY=2022&ALL_TI_YMD=20220610&GRADE=1&SEM=1&CLASS_NM=1
+    datac = requests.get(f"https://open.neis.go.kr/hub/misTimetable?KEY=2d4128bc16f24606b365a2a664d4620d&Type=json&pIndex=1&ATPT_OFCDC_SC_CODE={s.edumintype}&SD_SCHUL_CODE={s.school}&ALL_TI_YMD={ymd}&GRADE={s.grade}&CLASS_NM={s.stclasstype}").json() 
+  
+    
+    i = 0
+    alld = []
+    for item in datac["misTimetable"][1]["row"]:
+      i+=1
+      send_data = {"title":item["ITRT_CNTNT"][1:], "period":i}
+      
+      alld.append(send_data)
+      print(alld)
+  
+    data = {"timesc":alld}
+    ds = json.dumps(data, ensure_ascii=False)
+    return HttpResponse(
+      ds,
+      content_type=u"application/json; charset=utf-8",
+      status=200)
+  except Exception as e:
+    return rDatStat("박사랑 바보 ERROR", str(e))
 
 def getDatalunc(request, pk, ymd):
   print(os.getenv("KEY"))
+  
   s = Student.objects.get(pk=pk)
   
   datac = requests.get(f"https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=fc1214b4b3844ebe865233e7cf37f20d&Type=json&pIndex=1&pSize=10&ATPT_OFCDC_SC_CODE={s.edumintype}&SD_SCHUL_CODE={s.school}&MLSV_YMD={ymd}").json() 
