@@ -33,7 +33,7 @@ TYPE: **GET REQUEST**
 ```
 
 URL/timesc/studentPk/시간표일자(YYYYMMDD)/<br>
-[예시](https://classappAPI.compilingcoder.repl.co/api/timesc/B10/7021137/2022/20220610/1/1/8)
+[예시](https://classappAPI.compilingcoder.repl.co/timesc/1/20221013)
 
 # User API
 ### 유저 생성 <br>
@@ -156,6 +156,6 @@ TYPE: **GET REQUEST**
 }
 ```
 URL/food/StudentPk/시간표일자(YYYYMMDD)/<br>
-[예시](https://classappapi.compilingcoder.repl.co/api/food/B10/7021137/20220610/)
+[예시](https://classappapi.compilingcoder.repl.co/food/1/20221013/)
 
 
