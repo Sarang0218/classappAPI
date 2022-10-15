@@ -1,6 +1,8 @@
 import os
+
 print("AUTO RUN IS ENABLED.")
 os.system("python src/manage.py runserver 0.0.0.0:3000")
+  
 while True:
   print("\n")
   option = ""

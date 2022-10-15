@@ -8,9 +8,6 @@ from .models import Student, Todo, GroupChat, Message
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
-import Crypto
-from Crypto.publickey import RSA
-from Crypto import Random
 
 
 ## HELPERS ##
@@ -25,11 +22,13 @@ def rDatStat(res, reason):
 
 #급식#
 #시간표/급식#
-def getData(request, pk, year, ymd, sem):
+def getData(request, pk, ymd):
   print(os.getenv("KEY"))
-  s = Student.object.get(pk=pk)
-  
-  datac = requests.get(f"https://open.neis.go.kr/hub/misTimetable?KEY=2d4128bc16f24606b365a2a664d4620d&Type=json&pIndex=1&ATPT_OFCDC_SC_CODE={s.edumintype}&SD_SCHUL_CODE={s.school}&AY={year}&ALL_TI_YMD={ymd}&GRADE={s.grade}&SEM={sem}&CLASS_NM={s.stclasstype}").json() 
+  s = Student.objects.get(pk=pk)
+  print(f"https://open.neis.go.kr/hub/misTimetable?KEY=2d4128bc16f24606b365a2a664d4620d&Type=json&pIndex=1&ATPT_OFCDC_SC_CODE={s.edumintype}&SD_SCHUL_CODE={s.school}&ALL_TI_YMD={ymd}&GRADE={s.grade}&CLASS_NM={s.stclasstype}")
+  #https://open.neis.go.kr/hub/misTimetable?KEY=2d4128bc16f24606b365a2a664d4620d&Type=json&pIndex=1&ATPT_OFCDC_SC_CODE=B10&SD_SCHUL_CODE=7021137&AY=2022&ALL_TI_YMD=20220610&GRADE=1&SEM=1&CLASS_NM=1
+  datac = requests.get(f"https://open.neis.go.kr/hub/misTimetable?KEY=2d4128bc16f24606b365a2a664d4620d&Type=json&pIndex=1&ATPT_OFCDC_SC_CODE={s.edumintype}&SD_SCHUL_CODE={s.school}&ALL_TI_YMD={ymd}&GRADE={s.grade}&CLASS_NM={s.stclasstype}").json() 
+
   
   i = 0
   alld = []
@@ -47,11 +46,11 @@ def getData(request, pk, year, ymd, sem):
     content_type=u"application/json; charset=utf-8",
     status=200)
 
-def getDatalunc(request, pk, sc, ymd):
+def getDatalunc(request, pk, ymd):
   print(os.getenv("KEY"))
   s = Student.objects.get(pk=pk)
   
-  datac = requests.get(f"https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=fc1214b4b3844ebe865233e7cf37f20d&Type=json&pIndex=1&pSize=10&ATPT_OFCDC_SC_CODE={s.edumintype}&SD_SCHUL_CODE={sc}&MLSV_YMD={ymd}").json() 
+  datac = requests.get(f"https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=fc1214b4b3844ebe865233e7cf37f20d&Type=json&pIndex=1&pSize=10&ATPT_OFCDC_SC_CODE={s.edumintype}&SD_SCHUL_CODE={s.school}&MLSV_YMD={ymd}").json() 
   alld = []
   for item in datac["mealServiceDietInfo"][1]["row"]:
     print(item)
@@ -70,22 +69,26 @@ def getDatalunc(request, pk, sc, ymd):
 def signUpUser(request, stclasstype, edumintype,  grade, school):
     #User 모델에 객체 생성
     # stu에 대입
+  username="dfAPssssssssssssL"
+  password="kdUsssssssssssSA"
   if request.method == "POST":
     username = request.POST["username"]
     password = request.POST["password"]
-    try:
+
+  
+  try:
       user = User.objects.create_user(username, password=password)
       user.save()
       stu = Student.objects.create(student = user, stclasstype =  stclasstype, edumintype = edumintype,  grade = grade, school=school)
-    except IntegrityError:
-      data = {"result":"fail", "reason":"Already Existing ID"}
+      stu.save()
+  except Exception as e:
+      data = {"result":"fail", "reason":str(e)}
       ds = json.dumps(data, ensure_ascii=False)
-      return rDatStat(res="fail", reason="Already Existing ID")
+      return rDatStat(res="fail", reason=str(e))
     
-
   
-  user.save()
-  stu.save()
+  
+  
 
   #성공
   data = {"result":"success", "pk":stu.pk}
@@ -104,7 +107,9 @@ def logcheck(request):
 
 #RSAenctypt
 def pkencrypt(request, pk):
+  #        
   
+  pass
 #TODOs#
 def todoCreate(request, pk, title, body, subject):
   try:

@@ -6,6 +6,11 @@
 - [x] Todo API
 - [ ] Chat API
 - [ ] 회원 Customization API
+
+
+
+
+
 # 시간표 API
 ### 시간표 불러오기 <br>
 TYPE: **GET REQUEST**
@@ -27,7 +32,7 @@ TYPE: **GET REQUEST**
 
 ```
 
-URL/api/timesc/studentPk/년도(YYYY)/시간표일자(YYYYMMDD)/학기/학년/반번호<br>
+URL/timesc/studentPk/시간표일자(YYYYMMDD)/<br>
 [예시](https://classappAPI.compilingcoder.repl.co/api/timesc/B10/7021137/2022/20220610/1/1/8)
 
 # User API
@@ -51,7 +56,8 @@ TYPE: **POST REQUEST**
 "username"
 "password"
 
-URL/api/signup/stclasstype/edumintype/grade
+URL/signup/stclasstype/edumintype/grade
+
 ### 로그인 (로그체크) <br>
 
 ```json
@@ -76,7 +82,7 @@ TYPE: **GET REQUEST**
   "todopk":2
 }
 ```
-URL/api/todoList/create/StudentPk/title/body/<br>
+URL/todoList/create/StudentPk/title/body/<br>
 
 ### Todo 보기
 TYPE: **GET REQUEST**
@@ -101,7 +107,7 @@ TYPE: **GET REQUEST**
   "result":"success",
 }
 ```
-URL/api/todoList/delete/todoPk/<br>
+URL/todoList/delete/todoPk/<br>
 
 # Chat API (Not Implemented)
 ## 메세지 보내기
@@ -111,7 +117,7 @@ TYPE: **GET REQUEST**
   "result":"success"
 }
 ```
-URL/api/chat/send/messageTxt/studentPk/GroupchatPk<br>
+URL/chat/send/messageTxt/studentPk/GroupchatPk<br>
 ## 메세지 모두 불러오기
 ```json
 {
@@ -149,7 +155,7 @@ TYPE: **GET REQUEST**
     }
 }
 ```
-URL/api/food/시도교육청코드/표준학교코드/시간표일자(YYYYMMDD)/<br>
+URL/food/StudentPk/시간표일자(YYYYMMDD)/<br>
 [예시](https://classappapi.compilingcoder.repl.co/api/food/B10/7021137/20220610/)
 
 
