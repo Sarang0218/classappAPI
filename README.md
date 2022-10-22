@@ -165,8 +165,8 @@ URL/food/StudentPk/시간표일자(YYYYMMDD)/<br>
 
 # 조회 API
 
-### Local Group 모두 불러오기
+### Local Group 모두 불러오기 (시도)
 URL/getlocals
 
-### Galaxy 모두 불러오기
+### Galaxy 모두 불러오기 (좀 더 세부적인거...)
 URL/getgalaxies/<state>

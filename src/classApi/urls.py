@@ -27,7 +27,7 @@ urlpatterns = [
     path('todoList/view/<int:pk>/',todoGet),
     path('todoList/create/<int:pk>/<str:title>/<str:body>/<str:subject>',todoCreate),
   path('getlocals/', getLocalGroups),
-  path('getgalaxies/<str:state>', getLocalGroups),
+  path('getgalaxies/<str:state>', getGalax),
   
   
     

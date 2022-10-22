@@ -10,7 +10,6 @@ def setup():
           for (k,v) in row.items(): # go over each column name and value 
               columns[k].append(v) # append the value into the appropriate list
   
-  #print(columns['SIG_KOR_NM'])
   
   with open("dat.txt", "r") as dat:
     txt = dat.read()
@@ -43,7 +42,7 @@ def get_locals(state):
       listR.append(item)
   return listR
 
-print(get_locals("부산시"))
+
 
 
 

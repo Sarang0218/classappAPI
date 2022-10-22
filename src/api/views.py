@@ -155,7 +155,7 @@ def logcheckGet(request, user, password):
       return rDatStat(res="fail", reason="invalid data")
 
 def getLocalGroups(request):
-  states = analyze.get_states()
+  states = list(analyze.get_states())
   data = {"result":"success", "locals":states}
   ds = json.dumps(data, ensure_ascii=False)
   return HttpResponse(
