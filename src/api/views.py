@@ -8,7 +8,7 @@ from .models import Student, Todo, GroupChat, Message
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
-
+from helper import analyze
 
 ## HELPERS ##
 def rDatStat(res, reason, pk=None):
@@ -144,12 +144,40 @@ def logcheck(request):
   else:
       return rDatStat(res="fail", reason="invalid data")
 
+
+
+def logcheckGet(request, user, password):
+  user = authenticate(request, username=user, password=password)
+  if user is not None:
+      stu = Student.objects.get(student=user)
+      return rDatStat(res="Success", reason="Succeeded in authentication", pk=stu.pk)  
+  else:
+      return rDatStat(res="fail", reason="invalid data")
+
+def getLocalGroups(request):
+  states = analyze.get_states()
+  data = {"result":"success", "locals":states}
+  ds = json.dumps(data, ensure_ascii=False)
+  return HttpResponse(
+    ds,
+    content_type=u"application/json; charset=utf-8",
+    status=200)
+def getGalax(request,state):
+  galax = analyze.get_locals(state)
+  data = {"result":"success", "locals":galax}
+  ds = json.dumps(data, ensure_ascii=False)
+  return HttpResponse(
+    ds,
+    content_type=u"application/json; charset=utf-8",
+    status=200)
 #RSAenctypt
 def pkencrypt(request, pk):
   #        
   
   pass
 #TODOs#
+
+  
 def todoCreate(request, pk, title, body, subject):
   try:
     stu = Student.objects.get(pk=pk)

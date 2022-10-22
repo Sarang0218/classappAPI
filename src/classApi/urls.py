@@ -23,7 +23,12 @@ urlpatterns = [
     path('signup/<str:stclasstype>/<str:school>/<str:edumintype>/<int:grade>', signUpUser),
     path('signup/<str:stclasstype>/<str:school>/<str:edumintype>/<int:grade>/<str:user>/<str:pw>', signUpUserGet),
     path('logcheck/', logcheck),
+    path('logcheckGet/<str:user>/<str:password>', logcheckGet),
     path('todoList/view/<int:pk>/',todoGet),
     path('todoList/create/<int:pk>/<str:title>/<str:body>/<str:subject>',todoCreate),
+  path('getlocals/', getLocalGroups),
+  path('getgalaxies/<str:state>', getLocalGroups),
+  
+  
     
 ]

@@ -4,6 +4,7 @@
 - [X] 시간표 API
 - [X] 급식 API
 - [x] Todo API
+- [x] 조회 API
 - [ ] Chat API
 - [ ] 회원 Customization API
 
@@ -74,6 +75,8 @@ URL/signup/stclasstype/school/edumintype/grade
 
 
 URL/api/logcheck
+
+
 # To do list API
 
 ### Todo 생성
@@ -160,4 +163,10 @@ TYPE: **GET REQUEST**
 URL/food/StudentPk/시간표일자(YYYYMMDD)/<br>
 [예시](https://classappapi.compilingcoder.repl.co/food/1/20221013/)
 
+# 조회 API
 
+### Local Group 모두 불러오기
+URL/getlocals
+
+### Galaxy 모두 불러오기
+URL/getgalaxies/<state>
