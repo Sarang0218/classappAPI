@@ -169,4 +169,7 @@ URL/food/StudentPk/시간표일자(YYYYMMDD)/<br>
 URL/getlocals
 
 ### Galaxy 모두 불러오기 (좀 더 세부적인거...)
-URL/getgalaxies/<state>
+URL/getgalaxies/[시도]
+
+### 학교 불러오기
+URL/getschool/[시도]/[구/시]/[학교 종류: 중학교, 고등학교, 등]

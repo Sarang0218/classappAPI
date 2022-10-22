@@ -164,7 +164,16 @@ def getLocalGroups(request):
     status=200)
 def getGalax(request,state):
   galax = analyze.get_locals(state)
-  data = {"result":"success", "locals":galax}
+  data = {"result":"success", "galaxies":galax}
+  ds = json.dumps(data, ensure_ascii=False)
+  return HttpResponse(
+    ds,
+    content_type=u"application/json; charset=utf-8",
+    status=200)
+
+def getSys(request, state, local, schltype):
+  schools = analyze.get_school(state, local, schltype)
+  data = {"result":"success", "schools":schools}
   ds = json.dumps(data, ensure_ascii=False)
   return HttpResponse(
     ds,
