@@ -11,8 +11,10 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 ## HELPERS ##
-def rDatStat(res, reason):
+def rDatStat(res, reason, pk=None):
   data = {"result":res, "reason":reason}
+  if pk:
+    data["pk"] = pk
   ds = json.dumps(data, ensure_ascii=False)
   return HttpResponse(
         ds,
@@ -76,22 +78,26 @@ def getDatalunc(request, pk, ymd):
 def signUpUser(request, stclasstype, edumintype,  grade, school):
     #User 모델에 객체 생성
     # stu에 대입
-  username="dfAPssssssssssssL"
-  password="kdUsssssssssssSA"
-  if request.method == "POST":
-    username = request.POST["username"]
-    password = request.POST["password"]
-
-  
+  print(request.POST)
   try:
-      user = User.objects.create_user(username, password=password)
-      user.save()
-      stu = Student.objects.create(student = user, stclasstype =  stclasstype, edumintype = edumintype,  grade = grade, school=school)
-      stu.save()
-  except Exception as e:
-      data = {"result":"fail", "reason":str(e)}
-      ds = json.dumps(data, ensure_ascii=False)
-      return rDatStat(res="fail", reason=str(e))
+    if request.method == "POST":
+      username = request.POST["username"]
+      password = request.POST["password"]
+  
+    
+    try:
+        user = User.objects.create_user(username, password=password)
+        user.save()
+        stu = Student.objects.create(student = user, stclasstype =  stclasstype, edumintype = edumintype,  grade = grade, school=school)
+        stu.save()
+    except Exception as e:
+        data = {"result":"fail", "reason":str(e)}
+        ds = json.dumps(data, ensure_ascii=False)
+        return rDatStat(res="fail", reason=str(e))
+  except KeyboardInterrupt as ks:
+    print(request.POST)
+    
+    return rDatStat(res="failY", reason = str(ks))
     
   
   
@@ -104,11 +110,37 @@ def signUpUser(request, stclasstype, edumintype,  grade, school):
     ds,
     content_type=u"application/json; charset=utf-8",
     status=200)
+def signUpUserGet(request, stclasstype, edumintype,  grade, school, user, pw):
+    #User 모델에 객체 생성
+    # stu에 대입
+  try:
+    
+    username = user
+    password = pw
+    try:
+        user = User.objects.create_user(username, password=password)
+        user.save()
+        stu = Student.objects.create(student = user, stclasstype =  stclasstype, edumintype = edumintype,  grade = grade, school=school)
+        stu.save()
+    except Exception as e:
+        data = {"result":"fail", "reason":str(e)}
+        ds = json.dumps(data, ensure_ascii=False)
+        return rDatStat(res="fail", reason=str(e))
+  except KeyboardInterrupt as ks:  
+    return rDatStat(res="failY", reason = str(ks))
+  #성공
+  data = {"result":"success", "pk":stu.pk}
+  ds = json.dumps(data, ensure_ascii=False)
+  return HttpResponse(
+    ds,
+    content_type=u"application/json; charset=utf-8",
+    status=200)
 @csrf_exempt
 def logcheck(request):
-  user = authenticate(request, username=request.POST["username"], password=request.POST["password"])
+  user = authenticate(request, username=request.POST.get("username"), password=request.POST.get("password"))
   if user is not None:
-      return rDatStat(res="Success", reason="Succeeded in authentication")  
+      stu = Student.objects.get(student=user)
+      return rDatStat(res="Success", reason="Succeeded in authentication", pk=stu.pk)  
   else:
       return rDatStat(res="fail", reason="invalid data")
 

@@ -21,6 +21,7 @@ urlpatterns = [
     path('timesc/<str:pk>/<str:ymd>/', getData),
     path('food/<int:pk>/<str:ymd>/', getDatalunc), 
     path('signup/<str:stclasstype>/<str:school>/<str:edumintype>/<int:grade>', signUpUser),
+    path('signup/<str:stclasstype>/<str:school>/<str:edumintype>/<int:grade>/<str:user>/<str:pw>', signUpUserGet),
     path('logcheck/', logcheck),
     path('todoList/view/<int:pk>/',todoGet),
     path('todoList/create/<int:pk>/<str:title>/<str:body>/<str:subject>',todoCreate),

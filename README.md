@@ -63,6 +63,8 @@ URL/signup/stclasstype/school/edumintype/grade
 ```json
 {
   "result":"success",
+  "res":"Succeeded in <AREA>",
+  "pk":777
 }
 ```
 
