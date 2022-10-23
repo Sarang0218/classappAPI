@@ -32,20 +32,47 @@ def writePost(request, forumPk, studentPk):
       content_type=u"application/json; charset=utf-8",
       status=200)
 
+def writePostGet(request, forumPk, studentPk, title, body):
+  
+    
+  forum = Forum.objects.get(pk=forumPk)
+  student = Student.objects.get(pk=studentPk)
+  
+  post = Post.objects.create(title=title, body=body, likes=0, forum=forum, student=student)
+
+  post.save()
+  data = {"result":"SUCCESS!!!!"}
+  ds = json.dumps(data, ensure_ascii=False)
+  return HttpResponse(
+      ds,
+      content_type=u"application/json; charset=utf-8",
+      status=200)
+
 def getPosts(request, forumPk):
   forum = Forum.objects.get(pk=forumPk)
   posts = Post.objects.filter(forum=forum)
   list = []
-  ex = [{"title":"인생", "body":"음?", "likes":10}]
+  
   for post in posts:
     print(post)
-    list.append({"title":post.title, "body":post.body,"likes":post.likes,"author":post.student})
+    list.append({"title":post.title, "body":post.body,"likes":post.likes,"author":post.student.student.username, "id":post.pk})
   data = {"result":list}
   ds = json.dumps(data, ensure_ascii=False)
   return HttpResponse(
       ds,
       content_type=u"application/json; charset=utf-8",
       status=200)
+
+def like(request, postid):
+    post = Post.objects.get(pk=postid)
+    post.likes += 1
+    post.save()
+    data = {"result":"SUCCESS!!!!"}
+    ds = json.dumps(data, ensure_ascii=False)
+    return HttpResponse(
+        ds,
+        content_type=u"application/json; charset=utf-8",
+        status=200)
 
   
   

@@ -1,4 +1,6 @@
 import requests
 
-response = requests.post("https://classappAPI.compilingcoder.repl.co/signup/8/7021137/B10/1", {"username":"testA","password":"tt"})
+# https://classappapi.compilingcoder.repl.co/forum/query/1/
+
+response = requests.post("https://classappapi.compilingcoder.repl.co/forum/send/1/9", {"title":"Helpme","body":"oksick"})
 print(response.json())

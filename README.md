@@ -5,7 +5,7 @@
 - [X] 급식 API
 - [x] Todo API
 - [x] 조회 API
-- [ ] 계시판 API
+- [X] 게시판 API
 
 
 
@@ -114,12 +114,12 @@ TYPE: **GET REQUEST**
 ```
 URL/todoList/delete/todoPk/<br>
 
-# 계시판 API (Implementing...)
+# 게시판 API (Implementing...)
 ## 글 쓰기
 TYPE: **GET REQUEST**
 ```json
 {
-  "result":"success"
+  "result":"SUCCESS!!!"
 }
 ```
 전달값<br>
@@ -130,21 +130,41 @@ URL/forum/send/<forumpk\>/<studentpk\><br>
 ## 글 조회
 ```json
 {
-   "messages":[
+   "result":[
       {
-        "message":"ㅋㅋㅋ 나 이번에 전교 1등임",
-        "studentPk":1,
-        "groupChatPk":12
+         "title":"히히",
+         "body":"크크루삥뽕",
+         "likes":3,
+         "author":"tte",
+         "id":1
       },
       {
-        "message":"응 어쩔티비",
-        "studentPk":2,
-        "groupChatPk":12
+         "title":"OOOOOO",
+         "body":"oksick",
+         "likes":1,
+         "author":"tt7",
+         "id":2
+      },
+      {
+         "title":"Helpme",
+         "body":"oksick",
+         "likes":0,
+         "author":"tt7",
+         "id":3
       }
    ]
 }
   ```
 URL/forum/query/<forumpk\><br>
+
+## 좋아요
+```json
+{
+  "result":"SUCCESS!!!"
+}
+```
+
+URL/forum/like/<postid\>
 
 #  급식 API
 ### 시간표 불러오기 <br>
