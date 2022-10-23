@@ -5,8 +5,8 @@
 - [X] 급식 API
 - [x] Todo API
 - [x] 조회 API
-- [ ] Chat API
-- [ ] 회원 Customization API
+- [ ] 계시판 API
+
 
 
 
@@ -114,16 +114,20 @@ TYPE: **GET REQUEST**
 ```
 URL/todoList/delete/todoPk/<br>
 
-# Chat API (Not Implemented)
-## 메세지 보내기
+# 계시판 API (Implementing...)
+## 글 쓰기
 TYPE: **GET REQUEST**
 ```json
 {
   "result":"success"
 }
 ```
-URL/chat/send/messageTxt/studentPk/GroupchatPk<br>
-## 메세지 모두 불러오기
+전달값<br>
+"title"
+"body"
+
+URL/forum/send/<forumpk\>/<studentpk\><br>
+## 글 조회
 ```json
 {
    "messages":[
@@ -140,7 +144,7 @@ URL/chat/send/messageTxt/studentPk/GroupchatPk<br>
    ]
 }
   ```
-URL/api/chat/get/GroupchatPk
+URL/forum/query/<forumpk\><br>
 
 #  급식 API
 ### 시간표 불러오기 <br>

@@ -28,11 +28,15 @@ def setup():
     specifics.append(columns['SIG_KOR_NM'][i])
     krc[columns['SIG_KOR_NM'][i]] = dict[columns["SIG_CD"][i][:2]]
     
+    
   return {"KRC" : krc, "BGCOUNTY" : bgCOUNTY, "SPECIFICS": specifics}
 
 
 def get_states():
-  return set(setup()["BGCOUNTY"])
+  mylist = setup()["BGCOUNTY"]
+  mylist = list(dict.fromkeys(mylist))
+  
+  return mylist
 
 def get_locals(state):
   listR = []
@@ -67,7 +71,6 @@ def get_school(state, local, schlTYPE):
   return list
     
     
-
 
 
 

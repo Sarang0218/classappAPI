@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate
 import os
 import json
 import requests
-from .models import Student, Todo, GroupChat, Message
+from .models import Student, Todo
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt

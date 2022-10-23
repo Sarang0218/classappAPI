@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from api.views import *
+from forum.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('timesc/<str:pk>/<str:ymd>/', getData),
@@ -29,6 +30,9 @@ urlpatterns = [
   path('getlocals/', getLocalGroups),
   path('getgalaxies/<str:state>', getGalax),
   path('getschool/<str:state>/<str:local>/<str:schltype>', getSys),
+  path('forum/send/<int:forumpk>/<int:studentpk>', writePost),
+  path('forum/query/<int:forumpk>/', getPosts ),
+  path('testLinkkor', 씨발_어쩌다가_내인생이_이지랄이_됐는지는_모르겠지만_하_개피곤하네_씨이이이이바아알)
   
   
     
