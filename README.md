@@ -1,4 +1,8 @@
+# 완 료 ! ! ! ! ! !   가즈아아아아아아
+
 # Sirius Student Management API
+
+
 ## 시리우스의 종합 학생 관리 시스템
 ### 개발 현황:
 - [X] 시간표 API
@@ -114,7 +118,7 @@ TYPE: **GET REQUEST**
 ```
 URL/todoList/delete/todoPk/<br>
 
-# 게시판 API (Implementing...)
+# 게시판 API 
 ## 글 쓰기
 TYPE: **GET REQUEST**
 ```json
